@@ -12,6 +12,14 @@ run following commands:
 
 after this, we can add the file in git for tracking code and .dvc file but NOT DATA FOLDER [This is only for DVC not for git]
 
+Data storage could be anywhere: for storing data in google drive use:
+
+    dvc remote add -d storage gdrive: hash_key_from_google_drive_folder; used for uploading data to storage.
+    dvc push; This is used for pushing data into storegae
+    dvc pull; for pulling the data from storage
+
+
+
 
 Important links:
 Basic introduction: https://www.youtube.com/watch?v=mHQPzVse2oA&t=20s&ab_channel=KrishNaik
