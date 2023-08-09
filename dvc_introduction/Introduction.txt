@@ -1,1 +1,21 @@
-DVC: Data version control.
+DVC: Data version control, This is a tool for Machine Learning or Data scientis which can keep track of experiments, Metrics and Data using this tool. Basically Git is used for tracking the code and It has very limited size to keep track of file, and If we will large sized data sets to work on ML based Training then for git, it would be difficult so DVC supports this to keep the data file in some storage and linked with git for giving status of data version.
+
+So, basically dvc create .dvc file which keep track of hash/MD5 value for latest data but It keeps tracks of all version of data in cache with MD5/hash key for each data version.
+
+For working DVC, Install DVC using PIP: pip install dvc
+Uisng conda: https://anaconda.org/conda-forge/dvc
+
+Once installation is finished.
+run following commands:
+ DVC init: Which is used for initilising the dvc
+ git init: git inialisation
+
+after this, we can add the file in git for tracking code and .dvc file but NOT DATA FOLDER [This is only for DVC not for git]
+
+
+Important links:
+Basic introduction: https://www.youtube.com/watch?v=mHQPzVse2oA&t=20s&ab_channel=KrishNaik
+Official page: https://dvc.org/doc/start
+DVC playlist: https://www.youtube.com/playlist?list=PL7WG7YrwYcnDb0qdPl9-KEStsL-3oaEjg
+
+
