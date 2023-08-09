@@ -18,8 +18,12 @@ Data storage could be anywhere: for storing data in google drive use:
     dvc push; This is used for pushing data into storegae
     dvc pull; for pulling the data from storage
 
-
-
+using dvc accessing the model.
+    dvc list; Which is used for tracking the dvc based file in github repo
+    dvc list github.com/clone_project
+    dvc get github.com/clone_project/data; it helps to get the file which you want to get into
+    dvc get https://github.com/iterative/dataset-registry use-cases/cats-dogs/
+    dvc import https://github.com/iterative/dataset-registry use-cases/cats-dogs/
 
 Important links:
 Basic introduction: https://www.youtube.com/watch?v=mHQPzVse2oA&t=20s&ab_channel=KrishNaik
