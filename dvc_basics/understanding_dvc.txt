@@ -1,8 +1,0 @@
-
-To start with DVC
-Git init: git initialised
-DVC init: DVC initialised.
-
-We will see .dvc folder is being created, and in this folder we will see cache folder, which takes care of each version of data.
-
-
