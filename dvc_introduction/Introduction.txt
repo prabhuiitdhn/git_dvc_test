@@ -25,6 +25,57 @@ using dvc accessing the model.
     dvc get https://github.com/iterative/dataset-registry use-cases/cats-dogs/
     dvc import https://github.com/iterative/dataset-registry use-cases/cats-dogs/
 
+to acess the dvc api
+    follow python_api_dvc.api file
+    using dvc.ap we can read the data and work on it for our purpose.
+
+Data pipelines
+
+    dvc stage add: Used for creating stages. These represent processing steps (usually scripts/code tracked with Git) and combine to form the pipeline. This will generate a dvc.yaml file which keeps track of stages i.e what are the params and command is being used for running it.
+    So, basically in the data pipelines, we can add the stages that "what should run first with thier depencies, data folder and information for running that particular pipleline."
+    We can create data preparation, data featuraziation and training with all the depencies.
+
+    The stages will look like this
+  stages:
+  prepare:
+    cmd: prepare.split -d .\src\prepare.py -d ..\data\data.xml -o ..\data\prepared
+      python .\src\prepare.py ..\data\data.xml
+    params:
+    - prepare.seed
+  featurize:
+    cmd: python src/featurization.py ..\data\prepared ..\data\features
+    deps:
+    - data/prepared
+    - src/featurization.py
+    params:
+    - featurize.max_features
+    - featurize.ngrams
+    outs:
+    - data/features
+  train:
+    cmd: python src/train.py data/features model.pkl
+    deps:
+    - data/features
+    - src/train.py
+    params:
+    - train.min_split
+    - train.n_est
+    - train.seed
+    outs:
+    - model.pkl
+
+   Then after this we can run
+    DVC repro: which will reproduce this pipelines.
+    DVC dag: shows the visualisation of pipelines
+    dvc metrics show: It will show the metrcis which saved into eval/live folder.
+
+    After changing the paramater, we can run again and see what are the changes happend.
+    run dvc repro
+    & see the changes.
+    dvc params diff : which show the differt params is being used.
+    dvc metrics diff : which shows the different metric changes
+
+
 Important links:
 Basic introduction: https://www.youtube.com/watch?v=mHQPzVse2oA&t=20s&ab_channel=KrishNaik
 Official page: https://dvc.org/doc/start
