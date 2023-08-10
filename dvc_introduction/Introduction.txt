@@ -37,13 +37,19 @@ Data pipelines
 
     The stages will look like this
   stages:
+stages:
   prepare:
-    cmd: prepare.split -d .\src\prepare.py -d ..\data\data.xml -o ..\data\prepared
-      python .\src\prepare.py ..\data\data.xml
+    cmd: python src\prepare.py .\data\data.xml
+    deps:
+    - .\data\data.xml
+    - .\src\prepare.py
     params:
     - prepare.seed
+    - prepare.split
+    outs:
+    - .\data\prepared
   featurize:
-    cmd: python src/featurization.py ..\data\prepared ..\data\features
+    cmd: python src/featurization.py data\prepared data\features
     deps:
     - data/prepared
     - src/featurization.py
@@ -63,6 +69,21 @@ Data pipelines
     - train.seed
     outs:
     - model.pkl
+  evaluate:
+    cmd: python src/evaluate.py model.pkl data/features
+    deps:
+    - data/features
+    - model.pkl
+    - src/evaluate.py
+    outs:
+    - eval/importance.png
+    - eval/live/plots:
+        cache: false
+    - eval/prc:
+        cache: false
+    metrics:
+    - eval/live/metrics.json:
+        cache: false
 
    Then after this we can run
     DVC repro: which will reproduce this pipelines.
